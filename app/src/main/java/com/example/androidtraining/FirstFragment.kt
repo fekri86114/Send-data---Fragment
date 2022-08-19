@@ -1,14 +1,19 @@
 package com.example.androidtraining
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.androidtraining.databinding.FirstFragmentBinding
 
+
 const val USER_SEND_DATA_KEY = "USER_NAME"
+const val SEND_PARCELABLE_KEY = "PERSON_DATA"
 
 class FirstFragment : Fragment() {
     lateinit var binding: FirstFragmentBinding
@@ -29,15 +34,17 @@ class FirstFragment : Fragment() {
 
             val name = binding.edtName.text.toString()
             val lastname = binding.edtLastname.text.toString()
+            val age = binding.edtAge.text.toString()
+            val gender = binding.edtGender.text.toString()
 
             if (name.isEmpty() && lastname.isEmpty()) {
                 Toast.makeText(context, "Please, fill out all!", Toast.LENGTH_SHORT).show()
             } else {
 
-                // pass FirstFragment() with SecondFragment()
+                val data = Person(name, lastname, age, gender)
 
                 val bundle = Bundle()
-                bundle.putString(USER_SEND_DATA_KEY, "$name $lastname")
+                bundle.putParcelable(SEND_PARCELABLE_KEY, data)
 
                 // set data to SecondFragment() by Bundle()
                 val fragment = SecondFragment()
@@ -52,4 +59,5 @@ class FirstFragment : Fragment() {
         }
 
     }
+
 }
