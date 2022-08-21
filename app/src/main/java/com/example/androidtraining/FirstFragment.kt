@@ -1,18 +1,15 @@
 package com.example.androidtraining
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.androidtraining.databinding.FirstFragmentBinding
 
 
-const val USER_SEND_DATA_KEY = "USER_NAME"
+//const val USER_SEND_DATA_KEY = "USER_NAME"
 const val SEND_PARCELABLE_KEY = "PERSON_DATA"
 
 class FirstFragment : Fragment() {
