@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnAnim.setOnClickListener {
-            useMultipleAnimations()
+            useAnimFromXML()
 
         }
 
@@ -105,6 +105,15 @@ class MainActivity : AppCompatActivity() {
         animSet.repeatCount = 4
 
         binding.imgAnim.startAnimation( animSet )
+
+    }
+
+    private fun useAnimFromXML() {
+
+        val anim = AnimationUtils.loadAnimation(this, R.anim.anim_alpha)
+        anim.fillAfter = true
+
+        binding.imgAnim.startAnimation(anim)
 
     }
 }
