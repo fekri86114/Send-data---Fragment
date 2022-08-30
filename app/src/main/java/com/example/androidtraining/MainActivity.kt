@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnAnim.setOnClickListener {
-            rotateAnimation()
+            useMultipleAnimations()
 
         }
 
@@ -49,21 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun scaleAnimation() {
-        val anim1 = ScaleAnimation(
-            1f, 2f, 1f, 2f
-        )
-        anim1.duration = 2000
-
-        // -----------------------------------------------
-
-        val anim2 = ScaleAnimation(
-            1f, 2f, 1f, 2f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
-        )
-        anim2.duration = 2000
-        binding.imgAnim.startAnimation(anim2)
-    }
-
     private fun translateAnimation() {
 
         val anim = TranslateAnimation(
@@ -78,7 +63,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun rotateAnimation() {
+    private fun scaleAnimation() :ScaleAnimation{
+        val anim1 = ScaleAnimation(
+            1f, 2f, 1f, 2f
+        )
+        anim1.duration = 2000
+
+        // -----------------------------------------------
+
+        val anim2 = ScaleAnimation(
+            1f, 2f, 1f, 2f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+        )
+        anim2.duration = 1000
+        return anim2
+    }
+
+    private fun rotateAnimation() : RotateAnimation{
         val anim1 = RotateAnimation(0f, 360f)
         anim1.duration = 2000
         anim1.repeatCount = 5
@@ -93,6 +93,18 @@ class MainActivity : AppCompatActivity() {
         anim2.repeatCount = 5
         anim2.repeatMode = Animation.REVERSE
 
-        binding.imgAnim.startAnimation(anim2)
+        return anim2
+    }
+
+    private fun useMultipleAnimations() {
+
+        val animSet = AnimationSet(true)
+        animSet.addAnimation( rotateAnimation() )
+        animSet.addAnimation( scaleAnimation() )
+        animSet.duration = 2000
+        animSet.repeatCount = 4
+
+        binding.imgAnim.startAnimation( animSet )
+
     }
 }
