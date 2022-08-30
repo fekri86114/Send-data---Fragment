@@ -3,8 +3,7 @@ package com.example.androidtraining
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
+import android.view.animation.*
 import com.example.androidtraining.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnAnim.setOnClickListener {
-            alphaAnimation()
+            rotateAnimation()
 
         }
 
@@ -48,5 +47,52 @@ class MainActivity : AppCompatActivity() {
 
         binding.imgAnim.startAnimation(anim)
 
+    }
+
+    private fun scaleAnimation() {
+        val anim1 = ScaleAnimation(
+            1f, 2f, 1f, 2f
+        )
+        anim1.duration = 2000
+
+        // -----------------------------------------------
+
+        val anim2 = ScaleAnimation(
+            1f, 2f, 1f, 2f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+        )
+        anim2.duration = 2000
+        binding.imgAnim.startAnimation(anim2)
+    }
+
+    private fun translateAnimation() {
+
+        val anim = TranslateAnimation(
+            0f, 0f,
+            0f, +1200f
+        )
+        anim.duration = 2000
+        anim.repeatCount = 4
+        anim.repeatMode = Animation.REVERSE
+        anim.interpolator = AccelerateDecelerateInterpolator()
+        binding.imgAnim.startAnimation(anim)
+
+    }
+
+    private fun rotateAnimation() {
+        val anim1 = RotateAnimation(0f, 360f)
+        anim1.duration = 2000
+        anim1.repeatCount = 5
+        anim1.repeatMode = Animation.REVERSE
+
+        // ----------------------------------------
+        val anim2 = RotateAnimation(
+            0f, 360f, Animation.RELATIVE_TO_SELF,
+            0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+        )
+        anim2.duration = 2000
+        anim2.repeatCount = 5
+        anim2.repeatMode = Animation.REVERSE
+
+        binding.imgAnim.startAnimation(anim2)
     }
 }
